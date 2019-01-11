@@ -1,0 +1,31 @@
+<div id="wrapper">
+
+      <!-- Sidebar -->
+    <div id="sidebar-wrapper" style="background: #34373a;" >
+        <ul class="sidebar-nav">
+            <li>
+                <a href="?page=add">Add Event</a>
+            </li>
+            <li>
+                <a href="?page=event">Event Managment</a>
+            </li>
+            <li>
+                <a href="?page=edit">Account Managment</a>
+            </li>
+            <li style="color: grey;">
+                  Created by: Bartosz Ziomek
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<script src="public/Styles/startbootstrap-simple-sidebar-master/vendor/jquery/jquery.min.js"></script>
+<script src="public/Styles/startbootstrap-simple-sidebar-master/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+</script>
