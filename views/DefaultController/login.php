@@ -28,7 +28,7 @@ include(dirname(__DIR__).'/sidebar.html');?>
         <button type="submit" class="btn btn-primary float-right">SIGN IN!</button>
     </form>
 
-    <form class="container col mb-4 mt-3 border-left" style="line-height: 2px" method="post" action="/index.php">
+    <form class="container col mb-4 mt-3 border-left" style="line-height: 2px" method="post" action="?page=register">
         <label class="mt-3" style="font-size: 25px"><img src="https://img.icons8.com/ios-glyphs/30/000000/add-user-group-woman-man.png" width="25px" height="25px"> SIGN UP</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">

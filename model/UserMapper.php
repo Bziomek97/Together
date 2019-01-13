@@ -21,7 +21,8 @@ class UserMapper
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new User($user['name'], $user['surname'], $user['email'], $user['password']);
+            $newuser = new User($user['name'], $user['surname'], $user['email'], $user['password']);
+            return $newuser;
         }
         catch(PDOException $e) {
             echo('Error: ' . $e->getMessage());
@@ -42,6 +43,37 @@ class UserMapper
         catch(PDOException $e) {
             die();
         }
+    }
+
+    public function setUser(string $email, string $name, string $surname, string $password): void
+    {
+        $sql = "SELECT COUNT(email) AS num FROM useraccount WHERE email = :email";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($row['num'] > 0){
+            die('That username already exists!');
+        }
+
+        $passwordHash = password_hash($password, PASSWORD_ARGON2I);
+
+        $stmt = $this->database->connect()->prepare(
+            'INSERT INTO useraccount(email,name,surname,idRole,password) 
+                       values (:email,:name,:surname,:idRole,:password)'
+        );
+
+        $role=1;
+        $stmt->bindParam(':email',$email);
+        $stmt->bindParam(':name',$name);
+        $stmt->bindParam(':idRole',$role);
+        $stmt->bindParam(':surname',$surname);
+        $stmt->bindParam(':password',$passwordHash);
+
+        $result=$stmt->execute();
+
+        echo($result);
     }
 
     public function delete(int $id): void

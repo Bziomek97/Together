@@ -35,7 +35,7 @@ class DefaultController extends AppController
                 return $this->render('login', ['message' => ['Email not recognized']]);
             }
 
-            if ($user->getPassword() !== $_POST['password']) {
+            if (!password_verify($_POST['password'],$user->getPassword())) {
                 return $this->render('login', ['message' => ['Wrong password']]);
             } else {
                 $_SESSION["id"] = $user->getEmail();
@@ -65,6 +65,18 @@ class DefaultController extends AppController
 
     public function register()
     {
+        if($_POST['password'] != $_POST['cpassword']){
+            echo('Not match passwords');
+            exit();
+        }
 
+        $mapper = new UserMapper();
+        if ($this->isPost()) {
+            $mapper->setUser($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password']);
+
+            $url = "http://$_SERVER[HTTP_HOST]/";
+            header("Location: {$url}?page=login");
+            exit();
+        }
     }
 }

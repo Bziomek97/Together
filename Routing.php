@@ -23,6 +23,10 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'logout'
             ],
+            'register' => [
+                'controller' => 'DefaultController',
+                'action' => 'register'
+            ],
             'edit' => [
                 'controller' => 'DefaultController',
                 'action' => 'edit'
