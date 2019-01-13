@@ -62,7 +62,18 @@ class DefaultController extends AppController
 
     public function edit()
     {
-        $this->render('edit', ['text' => 'You have been successfully logged out!']);
+        if(($_POST['password'] !== $_POST['cpassword']) && $_POST['password'] != NULL ){
+            echo('Not match passwords');
+            exit();
+        }
+
+        $mapper = new UserMapper();
+        if ($this->isPost()) {
+            if(!empty($_POST['email'])) $mapper->setEmail($_POST['email']);
+            if($_POST['password']!=NULL) $mapper->setPassword($_POST['password']);
+        }
+
+        $this->render('edit', ['text' => 'You have been successfully change information!']);
     }
 
     public function register()
@@ -75,10 +86,9 @@ class DefaultController extends AppController
         $mapper = new UserMapper();
         if ($this->isPost()) {
             $mapper->setUser($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password']);
-
-            $url = "http://$_SERVER[HTTP_HOST]/";
-            header("Location: {$url}?page=login");
-            exit();
         }
+
+        $this->login();
+        exit();
     }
 }

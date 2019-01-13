@@ -71,9 +71,7 @@ class UserMapper
         $stmt->bindParam(':surname',$surname);
         $stmt->bindParam(':password',$passwordHash);
 
-        $result=$stmt->execute();
-
-        echo($result);
+        $stmt->execute();
     }
 
     public function delete(int $id): void
@@ -81,6 +79,44 @@ class UserMapper
         try {
             $stmt = $this->database->connect()->prepare('DELETE FROM useraccount WHERE id = :id;');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e) {
+            die();
+        }
+    }
+
+    public function setEmail($email) : void
+    {
+        $sql = "SELECT COUNT(email) AS num FROM useraccount WHERE email = :email";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($row['num'] > 0){
+            die('That username already exists!');
+        }
+
+        try {
+            $stmt = $this->database->connect()->prepare('UPDATE useraccount SET email=:email where email=:session');
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':session',$_SESSION['id']);
+            $stmt->execute();
+        }
+        catch(PDOException $e) {
+            die();
+        }
+    }
+
+    public function setPassword($password) : void
+    {
+        try {
+            $passwordHash = password_hash($password, PASSWORD_ARGON2I);
+
+            $stmt = $this->database->connect()->prepare('UPDATE useraccount SET password=:password where email=:session');
+            $stmt->bindParam(':password', $passwordHash);
+            $stmt->bindParam(':session',$_SESSION['id']);
             $stmt->execute();
         }
         catch(PDOException $e) {
