@@ -16,7 +16,7 @@ class UserMapper
         string $email
     ):User {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE email = :email;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount WHERE email = :email;');
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -24,14 +24,15 @@ class UserMapper
             return new User($user['name'], $user['surname'], $user['email'], $user['password']);
         }
         catch(PDOException $e) {
-            return 'Error: ' . $e->getMessage();
+            echo('Error: ' . $e->getMessage());
+            exit();
         }
     }
 
     public function getUsers()
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM users WHERE email != :email;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount WHERE email != :email;');
             $stmt->bindParam(':email', $_SESSION['id'], PDO::PARAM_STR);
             $stmt->execute();
 
@@ -46,7 +47,7 @@ class UserMapper
     public function delete(int $id): void
     {
         try {
-            $stmt = $this->database->connect()->prepare('DELETE FROM users WHERE id = :id;');
+            $stmt = $this->database->connect()->prepare('DELETE FROM useraccount WHERE id = :id;');
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
         }

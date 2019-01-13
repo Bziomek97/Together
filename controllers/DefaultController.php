@@ -58,7 +58,13 @@ class DefaultController extends AppController
         $this->render('index', ['text' => 'You have been successfully logged out!']);
     }
 
-    public function edit(){
+    public function edit()
+    {
         $this->render('edit', ['text' => 'You have been successfully logged out!']);
+    }
+
+    public function register()
+    {
+
     }
 }

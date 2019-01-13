@@ -1,4 +1,4 @@
 <?php
-const SERVERNAME = '149.156.136.151';
+const SERVERNAME = 'den1.mysql2.gear.host';
 const USERNAME = 'bziomek';
-const PASSWORD = 'kapsel123';
+const PASSWORD = 'kapsel.23';
