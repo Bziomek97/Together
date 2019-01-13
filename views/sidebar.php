@@ -3,15 +3,24 @@
       <!-- Sidebar -->
     <div id="sidebar-wrapper" style="background: #34373a;" >
         <ul class="sidebar-nav">
-            <li>
-                <a href="?page=add">Add Event</a>
-            </li>
-            <li>
-                <a href="?page=event">Event Managment</a>
-            </li>
-            <li>
-                <a href="?page=edit">Account Managment</a>
-            </li>
+            <?php if($_SESSION['id']): ?>
+                <li>
+                    <a href="?page=add">Add Event</a>
+                </li>
+                <li>
+                    <a href="?page=event">Event Managment</a>
+                </li>
+                <li>
+                    <a href="?page=edit">Edit Account</a>
+                </li>
+                <li>
+                    <a href="?page=logout">Logout</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a href="?page=login">Sign in / Sign up</a>
+                </li>
+            <?php endif?>
             <li style="color: grey;">
                   Created by: Bartosz Ziomek
             </li>

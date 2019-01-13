@@ -19,8 +19,14 @@
       </div>
     </form>
 
+    <?php if(!$_SESSION['id']):?>
       <div class="navbar-buttons flex-sm">
         <a class="btn btn-success" role="button" href="?page=login">SIGN UP/IN</a>
       </div>
+    <?php else:?>
+        <div class="flex-sm" style="color: white;">
+            Witaj, <?php echo $_SESSION['name'].' '.$_SESSION['surname'];?>!
+        </div>
+    <?php endif;?>
 
 </nav>

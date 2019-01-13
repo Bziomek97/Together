@@ -3,8 +3,8 @@
 <?php include(dirname(__DIR__).'/head.html'); ?>
 
 <body>
-<?php include(dirname(__DIR__).'/navbar.html');
-include(dirname(__DIR__).'/sidebar.html');?>
+<?php include(dirname(__DIR__) . '/navbar.php');
+include(dirname(__DIR__) . '/sidebar.php');?>
 
 <div id="map">
   <script>

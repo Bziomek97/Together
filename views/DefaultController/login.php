@@ -4,8 +4,8 @@
 <?php include(dirname(__DIR__).'/head.html') ?>
 
 <body>
-<?php include(dirname(__DIR__).'/navbar.html');
-include(dirname(__DIR__).'/sidebar.html');?>
+<?php include(dirname(__DIR__) . '/navbar.php');
+include(dirname(__DIR__) . '/sidebar.php');?>
 
 <div class="row mt-5" style="margin-left: 100px; margin-right: 100px; background-color: whitesmoke; border-radius: 25px;">
     <form class=" container col mt-1" method="post" action="?page=login">

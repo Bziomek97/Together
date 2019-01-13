@@ -40,6 +40,8 @@ class DefaultController extends AppController
             } else {
                 $_SESSION["id"] = $user->getEmail();
                 $_SESSION["role"] = $user->getRole();
+                $_SESSION['name'] = $user->getName();
+                $_SESSION['surname'] = $user->getSurname();
 
                 $url = "http://$_SERVER[HTTP_HOST]/";
                 header("Location: {$url}?page=index");
