@@ -1,8 +1,8 @@
 <?php
 require_once 'AppController.php';
 
-require_once __DIR__.'/../model/User.php';
-require_once __DIR__.'/../model/UserMapper.php';
+require_once __DIR__ . '/../model/User/User.php';
+require_once __DIR__ . '/../model/User/UserMapper.php';
 
 class AdminController extends AppController
 {

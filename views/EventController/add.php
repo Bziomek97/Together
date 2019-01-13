@@ -18,7 +18,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
 
                     <div class="input-group mb-3">
@@ -33,16 +33,16 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
-                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
-                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Place</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
 
                     <div class="input-group mb-3">
@@ -74,7 +74,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                 </div>
 
                 <div class="container col d-flex ">
-                    <button type="button" class="btn btn-primary mb-3 ml-auto">Add event</button>
+                    <button type="submit" class="btn btn-primary mb-3 ml-auto">Add event</button>
                 </div>
             </div>
     </form>
