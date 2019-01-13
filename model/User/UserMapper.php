@@ -16,12 +16,12 @@ class UserMapper
         string $email
     ):User {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount WHERE email = :email;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount INNER JOIN role WHERE email = :email;');
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            $newuser = new User($user['name'], $user['surname'], $user['email'], $user['password']);
+            $newuser = new User($user['name'], $user['surname'], $user['email'], $user['password'],$user['Role']);
             return $newuser;
         }
         catch(PDOException $e) {

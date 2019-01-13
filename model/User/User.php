@@ -7,14 +7,15 @@ class User
     private $surname;
     private $email;
     private $password;
-    private $role = "ROLE_USER";
+    private $role;
 
-    public function __construct($name, $surname, $email, $password)
+    public function __construct($name, $surname, $email, $password, $role)
     {
         $this->name = $name;
         $this->surname = $surname;
         $this->email = $email;
         $this->password = $password;
+        $this->role= $role;
     }
 
     public function getName()
