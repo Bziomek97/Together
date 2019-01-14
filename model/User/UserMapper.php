@@ -37,7 +37,7 @@ class UserMapper
             $stmt->bindParam(':email', $_SESSION['id'], PDO::PARAM_STR);
             $stmt->execute();
 
-            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $user;
         }
         catch(PDOException $e) {

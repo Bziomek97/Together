@@ -25,7 +25,15 @@
       </div>
     <?php else:?>
         <div class="flex-sm" style="color: white;">
-            Hi, <?php echo $_SESSION['name'].' '.$_SESSION['surname'];?>!
+            Hi,
+            <?php if($_SESSION['role']=='admin'): ?>
+            <a style="color: lightcoral;">
+            <?php echo $_SESSION['name'].' '.$_SESSION['surname'];?>
+            </a>
+            <?php else: ?>
+            <?php echo $_SESSION['name'].' '.$_SESSION['surname'];?>
+            <?php endif;?>
+            !
         </div>
     <?php endif;?>
 

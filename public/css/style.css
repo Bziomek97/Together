@@ -99,3 +99,7 @@ li a:hover {
     overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+accountborder{
+    border-left: 1px solid red;
+}

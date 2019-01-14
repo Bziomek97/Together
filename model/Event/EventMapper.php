@@ -70,11 +70,9 @@ class EventMapper
             $stmt->bindParam(":name", $eventArray['name']);
             $stmt->bindParam(":description", $eventArray['description']);
 
-            $date=$eventArray['begindate']['date'].' '.$eventArray['begindate']['time'].':00';
-            $stmt->bindParam(':beginDate', $date, PDO::PARAM_STR);
+            $stmt->bindParam(':beginDate', $eventArray['begindate'], PDO::PARAM_STR);
 
-            $date2=$eventArray['enddate']['date'].' '.$eventArray['enddate']['time'].':00';
-            $stmt->bindParam(':endDate', $date2, PDO::PARAM_STR);
+            $stmt->bindParam(':endDate', $eventArray['enddate'], PDO::PARAM_STR);
 
             $stmt->bindParam(":idUser", $row2['usere']);
             $stmt->bindParam(":idPlace", $row['place']);
