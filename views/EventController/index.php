@@ -15,24 +15,23 @@
         <div class="container col pb-1">
             <table class="table">
                 <thead>
-                    <th scope="col" class="col-sm-1">#</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Place</th>
                     <th scope="col" class="col-2">Options</th>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>NiceEvent</td>
-                        <td>Somewhere</td>
-                        <td>DELETE?</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Event</td>
-                        <td>Somewhere</td>
-                        <td>DELETE?</td>
-                    </tr>
+                    <?php $i=1;
+                    foreach ($event as $val):  ?>
+                        <tr>
+                            <th scope="row"> <?= $i;$i++;?></th>
+                            <td class="col-6"> <?= $val['eventName']?></td>
+                            <td class="col-5"> <?= $val['namePlace']?></td>
+                            <td class="col-1"> Delete?</td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

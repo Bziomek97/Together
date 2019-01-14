@@ -18,14 +18,14 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                        <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Description</span>
                         </div>
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                        <textarea class="form-control" name="description" aria-label="With textarea"></textarea>
                     </div>
 
                     <div class="container row ">
@@ -33,16 +33,16 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
-                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="date" name="bdate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="btime" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
-                            <input type="date" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="date" name="edate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="etime" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                 </div>
@@ -54,22 +54,22 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Place</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                        <input type="text" name="place" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Street and Number</span>
                         </div>
-                        <input type="text" class="form-control col" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        <input type="text" class="form-control col-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" name="street" class="form-control col" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" name="number" class="form-control col-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">City</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" name="city" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
                 </div>
 

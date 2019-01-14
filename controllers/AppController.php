@@ -22,7 +22,7 @@ class AppController
         return $this->request === 'post';
     }
 
-    public function render(string $fileName = null, $variables = [])
+    public function render(string $fileName = null, array $variables = [])
     {
         $view = $fileName ? dirname(__DIR__).'/views/'.get_class($this).'/'.$fileName.'.php' : '';
 
