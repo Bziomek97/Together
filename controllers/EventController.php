@@ -55,4 +55,22 @@ class EventController extends AppController
 
         $this->render('add');
     }
+
+    public function eventAction()
+    {
+        $mapper = new EventMapper();
+        if($this->isPost()){
+            if($_POST['action'] == 'delete'){
+                $mapper->deleteEvent();
+            }
+            else if($_POST['action'] == 'modify'){
+
+            }
+            else{
+
+            }
+        }
+
+        $this->index();
+    }
 }

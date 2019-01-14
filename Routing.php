@@ -39,6 +39,11 @@ class Routing
                 'controller' => 'EventController',
                 'action' => 'add'
             ],
+            'eventAction'=>
+            [
+                'controller' => 'EventController',
+                'action' => 'eventAction'
+            ],
             'admin' => [
                 'controller' => 'AdminController',
                 'action' => 'index'

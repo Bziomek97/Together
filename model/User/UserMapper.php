@@ -16,7 +16,7 @@ class UserMapper
         string $email
     ):User {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount INNER JOIN role WHERE email = :email;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount INNER JOIN role ON useraccount.idRole = role.id WHERE email = :email;');
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 

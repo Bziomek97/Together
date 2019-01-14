@@ -21,9 +21,9 @@ class EventMapper
     public function setEvent($eventArray)
     {
         if($eventArray != NULL) {
-            $sql = "SELECT COUNT(eventName) AS num FROM event WHERE eventName = :name";
+            $sql = "SELECT COUNT(eventName) AS num FROM event WHERE eventName = :named";
             $stmt = $this->database->connect()->prepare($sql);
-            $stmt->bindValue(':name', $eventArray['name']);
+            $stmt->bindParam(':named', $eventArray['name']);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -31,36 +31,36 @@ class EventMapper
                 die('This event already exists!');
             }
 
-            $sql = "SELECT COUNT(namePlace) AS num FROM place WHERE namePlace = :namePlace";
+            $sql = "SELECT COUNT(id) AS num2 FROM place WHERE namePlace = :namePlace";
             $stmt = $this->database->connect()->prepare($sql);
-            $stmt->bindValue(':namePlace', $eventArray['place']['name']);
+            $stmt->bindParam(':namePlace', $eventArray['place']['name']);
             $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $row2 = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($row['num'] == 0) {
-                $sql = "INSERT INTO
-                place(namePlace,street,numberPlace,city) values 
-                (:namePlace,:street,:numberPlace,:city)";
+            if ($row2['num2'] == 0) {
+
+                $sql = "INSERT INTO place(namePlace,street,numberPlace,city) values 
+                        (:namePlace,:street,:numberPlace,:city)";
 
                 $stmt = $this->database->connect()->prepare($sql);
-                $stmt->bindParam(':namePlace', $eventArray['place']['name']);
-                $stmt->bindParam(':street', $eventArray['place']['street']);
-                $stmt->bindParam(':numberPlace', $eventArray['place']['number']);
-                $stmt->bindParam(':city', $eventArray['place']['city']);
+                $stmt->bindParam(':namePlace', $eventArray['place']['name'], PDO::PARAM_STR);
+                $stmt->bindParam(':street', $eventArray['place']['street'], PDO::PARAM_STR);
+                $stmt->bindParam(':numberPlace', $eventArray['place']['number'], PDO::PARAM_STR);
+                $stmt->bindParam(':city', $eventArray['place']['city'], PDO::PARAM_STR);
                 $stmt->execute();
             }
 
             $sql = "SELECT id AS place FROM place WHERE namePlace = :namePlace";
             $stmt = $this->database->connect()->prepare($sql);
-            $stmt->bindValue(':namePlace', $eventArray['place']['name']);
+            $stmt->bindParam(':namePlace', $eventArray['place']['name']);
             $stmt->execute();
-            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $sql = "SELECT id AS usere FROM useraccount WHERE email = :email";
             $stmt = $this->database->connect()->prepare($sql);
-            $stmt->bindValue(':email', $_SESSION['id']);
+            $stmt->bindParam(':email', $_SESSION['id']);
             $stmt->execute();
-            $row2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $row2 = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $sql = "INSERT INTO
                 event(eventName,description,beginDate,endDate,idUser,idPlace) values 
@@ -84,12 +84,52 @@ class EventMapper
 
     public function getEvents()
     {
-        $sql = "SELECT * FROM event INNER JOIN place, useraccount WHERE email = :email";
+        $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id WHERE email = :email";
         $stmt = $this->database->connect()->prepare($sql);
-        $stmt->bindValue(':email', $_SESSION['id']);
+        $stmt->bindParam(':email', $_SESSION['id']);
         $stmt->execute();
         $result=$stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
+
+    public function deleteEvent()
+    {
+        /*
+         * 1. Szukanie id miejsca
+         * 2. Gdy znajdziemy to szukamy czy to miejsce jest wykorzystywane TYLKO 1!!!
+         * 4. Tak: DELETE Nie: SKIP
+         * 3. Delete Event
+         * POMIJANIE ANOMALII USUWANIA!!!
+         */
+
+        $sql="SELECT COUNT(idPlace) as num from event where eventName= :named";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":named",$_POST['event']);
+        $stmt->execute();
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($result['num'] == 1){
+            $sql="SELECT idPlace as num from event where eventName= :named";
+            $stmt = $this->database->connect()->prepare($sql);
+            $stmt->bindParam(":named",$_POST['event']);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            $id=$result['num'];
+        }
+
+        $sql="DELETE FROM event where eventName = :name";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":name",$_POST['event']);
+        $stmt->execute();
+
+        if($id != NULL){
+            $sql="DELETE FROM place where id = :id";
+            $stmt = $this->database->connect()->prepare($sql);
+            $stmt->bindParam(":id",$id);
+            $stmt->execute();
+        }
+
+    }
+
 }
