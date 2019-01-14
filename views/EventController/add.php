@@ -34,7 +34,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
                             <input type="date" name="bdate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="btime" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="btime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
 
                         <div class="input-group mb-3">
@@ -42,7 +42,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
                             <input type="date" name="edate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="etime" class="form-control col-sm-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="etime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
                     </div>
                 </div>

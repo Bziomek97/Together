@@ -64,6 +64,7 @@ class EventController extends AppController
                 $mapper->deleteEvent();
             }
             else if($_POST['action'] == 'modify'){
+                $event = $mapper->getEvent();
 
             }
             else{

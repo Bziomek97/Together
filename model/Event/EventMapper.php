@@ -84,9 +84,15 @@ class EventMapper
 
     public function getEvents()
     {
-        $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id WHERE email = :email";
-        $stmt = $this->database->connect()->prepare($sql);
-        $stmt->bindParam(':email', $_SESSION['id']);
+        if($_SESSION['role']=='admin'){
+            $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id";
+            $stmt = $this->database->connect()->prepare($sql);
+        }
+        else {
+            $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id WHERE email = :email";
+            $stmt = $this->database->connect()->prepare($sql);
+            $stmt->bindParam(':email', $_SESSION['id']);
+        }
         $stmt->execute();
         $result=$stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -98,7 +104,7 @@ class EventMapper
         /*
          * 1. Szukanie id miejsca
          * 2. Gdy znajdziemy to szukamy czy to miejsce jest wykorzystywane TYLKO 1!!!
-         * 4. Tak: DELETE Nie: SKIP
+         * 4. [Tak: DELETE Nie: SKIP] Place
          * 3. Delete Event
          * POMIJANIE ANOMALII USUWANIA!!!
          */
@@ -130,6 +136,17 @@ class EventMapper
             $stmt->execute();
         }
 
+    }
+
+    public function getEvent() : Event
+    {
+        $sql="SELECT * from event inner join place on event.idPlace = place.id where eventName= :named";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":named",$_POST['event']);
+        $stmt->execute();
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        return new Event($result['eventName'],$result['description'],$result['beginDate'],$result['endDate'],
+            $result['namePlace'],$result['street'],$result['numberPlace'],$result['city']);
     }
 
 }
