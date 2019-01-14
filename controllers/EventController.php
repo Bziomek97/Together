@@ -53,6 +53,35 @@ class EventController extends AppController
         $this->render('add');
     }
 
+    public function edit(): void
+    {
+        $mapper = new EventMapper();
+
+        if($this->isPost()) {
+
+            $date=$_POST['bdate'].' '.$_POST['btime'].':00';
+            $date2=$_POST['edate'].' '.$_POST['etime'].':00';
+
+            $eventArray = [
+                'name' => $_POST['name'],
+                'description' => $_POST['description'],
+                'begindate' => $date,
+                'enddate' => $date2,
+                'place' => [
+                    'name' => $_POST['place'],
+                    'street' => $_POST['street'],
+                    'number' => $_POST['number'],
+                    'city' => $_POST['city']
+                ],
+                'oldevent' => $_POST['oldevent']
+            ];
+
+            $mapper->editEvent($eventArray);
+        }
+
+        $this->index();
+    }
+
     public function eventAction()
     {
         $mapper = new EventMapper();

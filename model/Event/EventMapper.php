@@ -99,14 +99,6 @@ class EventMapper
 
     public function deleteEvent()
     {
-        /*
-         * 1. Szukanie id miejsca
-         * 2. Gdy znajdziemy to szukamy czy to miejsce jest wykorzystywane TYLKO 1!!!
-         * 4. [Tak: DELETE Nie: SKIP] Place
-         * 3. Delete Event
-         * POMIJANIE ANOMALII USUWANIA!!!
-         */
-
         $sql="SELECT COUNT(idPlace) as num from event where eventName= :named";
         $stmt = $this->database->connect()->prepare($sql);
         $stmt->bindParam(":named",$_POST['event']);
@@ -145,6 +137,22 @@ class EventMapper
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
         return new Event($result['eventName'],$result['description'],$result['beginDate'],$result['endDate'],
             $result['namePlace'],$result['street'],$result['numberPlace'],$result['city']);
+    }
+
+    public function editEvent($eventArray) : void
+    {
+
+        $sql="UPDATE event SET eventName = :eventName, description = :description, beginDate = :beginDate, endDate = :endDate
+              where eventName = :named";
+        $stmt = $this->database->connect()->prepare($sql);
+
+        $stmt->bindParam(":eventName",$eventArray['name']);
+        $stmt->bindParam(":description",$eventArray['description']);
+        $stmt->bindParam(":beginDate",$eventArray['begindate']);
+        $stmt->bindParam(":endDate",$eventArray['enddate']);
+        $stmt->bindParam(":named",$eventArray['oldevent']);
+
+        $stmt->execute();
     }
 
 }
