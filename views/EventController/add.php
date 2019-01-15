@@ -37,8 +37,8 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
-                            <input type="date" name="bdate" id="bdate" onchange="checkStartDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="btime" id="btime" onchange="checkStartDate()"  class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="date" name="bdate" id="bdate" onblur="checkStartDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="btime" id="btime" onblur="checkStartDate()"  class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="invalid-feedback" id="berror">
                             </div>
                         </div>
@@ -47,8 +47,8 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend ">
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
-                                <input type="date" name="edate" class="form-control col-sm-2 " id="edate" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                                <input type="time" name="etime" class="form-control col-sm-2" id="etime" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input type="date" name="edate" class="form-control col-sm-2 " id="edate" onblur="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input type="time" name="etime" class="form-control col-sm-2" id="etime" onblur="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>
                     </div>
                 </div>
