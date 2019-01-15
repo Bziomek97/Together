@@ -7,7 +7,7 @@
 
 <?php include(dirname(__DIR__) . '/navbar.php');
 include(dirname(__DIR__) . '/sidebar.php');?>
-
+<script type="text/javascript" src="../../public/js/script.js"></script>
 <div class="mt-4" style="margin-left: 100px; margin-right: 100px; background-color: whitesmoke; border-radius: 25px;">
     <div class="container col">
         <label class="mt-3" style="font-size: 25px;">Users List</label>

@@ -3,11 +3,15 @@
 
 <?php include(dirname(__DIR__).'/head.html'); ?>
 
-<body>
+<body id="parentID">
 <?php include(dirname(__DIR__) . '/navbar.php');
 include(dirname(__DIR__) . '/sidebar.php');?>
 
-    <form method="POST" action="?page=add">
+<script type="text/javascript" src="../../public/js/inputDateCheck.js"></script>
+
+<div id="alertDate"> </div>
+
+    <form method="POST" action="?page=add" name="eventForm" id="eventForm">
             <div class="mt-4" style="margin-left: 100px; margin-right: 100px; background-color: whitesmoke; border-radius: 25px;">
                 <div class="container col">
                 <label class="mt-3" style="font-size: 25px;"><img src="https://img.icons8.com/ios-glyphs/30/000000/plus-math.png" width="22px" height="22px"> Add event</label>
@@ -33,17 +37,19 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
-                            <input type="date" name="bdate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="btime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="date" name="bdate" id="bdate" onchange="checkStartDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="btime" id="btime" onchange="checkStartDate()"  class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <div class="invalid-feedback" id="berror">
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+                            <div class="input-group-prepend ">
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
-                            <input type="date" name="edate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="etime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                        </div>
+                                <input type="date" name="edate" class="form-control col-sm-2 " id="edate" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input type="time" name="etime" class="form-control col-sm-2" id="etime" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            </div>
                     </div>
                 </div>
                 <div class="container col">
@@ -74,7 +80,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                 </div>
 
                 <div class="container col d-flex ">
-                    <button type="submit" class="btn btn-primary mb-3 ml-auto">Add event</button>
+                    <button type="submit" id="acceptButton" disabled="true  " class="btn btn-primary mb-3 ml-auto">Add event</button>
                 </div>
             </div>
     </form>

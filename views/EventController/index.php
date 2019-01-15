@@ -38,7 +38,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                          width="20" height="20"
                                          viewBox="0 0 224 224"
-                                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#e74c3c"><g id="surface1"><path d="M41.02,28.28l-12.74,12.74l70.98,70.98l-71.4,71.54l12.6,12.6l71.54,-71.4l71.4,71.4l12.74,-12.74l-71.4,-71.4l70.98,-70.98l-12.74,-12.74l-70.98,70.98z"></path></g></g></g></svg>
+                                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-size="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#e74c3c"><g id="surface1"><path d="M41.02,28.28l-12.74,12.74l70.98,70.98l-71.4,71.54l12.6,12.6l71.54,-71.4l71.4,71.4l12.74,-12.74l-71.4,-71.4l70.98,-70.98l-12.74,-12.74l-70.98,70.98z"></path></g></g></g></svg>
                                 </button>
                                 <button type="submit" name="action" value="modify" style="background: none; border: none;">
                                     <img src="https://img.icons8.com/ios/50/000000/settings.png" width="20px" height="20px">

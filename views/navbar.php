@@ -32,8 +32,7 @@
             </a>
             <?php else: ?>
             <?php echo $_SESSION['name'].' '.$_SESSION['surname'];?>
-            <?php endif;?>
-            !
+            <?php endif;?>!
         </div>
     <?php endif;?>
 

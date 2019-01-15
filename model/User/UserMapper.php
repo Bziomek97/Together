@@ -33,11 +33,11 @@ class UserMapper
     public function getUsers()
     {
         try {
-            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount WHERE email != :email;');
+            $stmt = $this->database->connect()->prepare('SELECT * FROM useraccount INNER JOIN role on useraccount.idRole = role.id WHERE email != :email;');
             $stmt->bindParam(':email', $_SESSION['id'], PDO::PARAM_STR);
             $stmt->execute();
 
-            $user = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $user;
         }
         catch(PDOException $e) {
