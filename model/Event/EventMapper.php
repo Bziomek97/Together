@@ -173,4 +173,11 @@ class EventMapper
         return $result;
     }
 
+    public function deleteEvents($userid)
+    {
+        $sql='DELETE e FROM EVENT e INNER JOIN useraccount on e.idUser = useraccount.id where email = :email';
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":email",$userid);
+        $stmt->execute();
+    }
 }
