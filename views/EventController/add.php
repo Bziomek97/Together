@@ -7,6 +7,16 @@
 <?php include(dirname(__DIR__) . '/navbar.php');
 include(dirname(__DIR__) . '/sidebar.php');?>
 
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken
+    });
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+</script>
+
 <script type="text/javascript" src="../../public/js/inputDateCheck.js"></script>
 
 <div id="alertDate"> </div>
@@ -62,7 +72,6 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         </div>
                         <input type="text" name="place" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
-
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Street and Number</span>
@@ -80,7 +89,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                 </div>
 
                 <div class="container col d-flex ">
-                    <button type="submit" id="acceptButton" disabled="true  " class="btn btn-primary mb-3 ml-auto">Add event</button>
+                    <button type="submit" id="acceptButton" disabled="true" class="btn btn-primary mb-3 ml-auto">Add event</button>
                 </div>
             </div>
     </form>

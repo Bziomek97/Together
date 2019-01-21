@@ -139,6 +139,16 @@ class EventMapper
             $result['namePlace'],$result['street'],$result['numberPlace'],$result['city']);
     }
 
+    public function getGETEvent($name)
+    {
+        $sql="SELECT * from event inner join place on event.idPlace = place.id inner join useraccount on event.idUser=useraccount.id where eventName= :named";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":named",$name);
+        $stmt->execute();
+        $result=$stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function editEvent($eventArray) : void
     {
 
@@ -153,6 +163,15 @@ class EventMapper
         $stmt->bindParam(":named",$eventArray['oldevent']);
 
         $stmt->execute();
+    }
+
+    public function getAllEvents()
+    {
+        $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id";
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->execute();
+        $result=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
     }
 
 }
