@@ -46,14 +46,19 @@ include(dirname(__DIR__) . '/sidebar.php');?>
             <label class="mt-3" style="font-size: 18px; margin-bottom: 220px">Localization</label>
         </div>
         <nav id="map" style="position:absolute !important;margin-top: 10px"></nav>
-
+        <div class="container col">
+            <p>
+                <?= $event['street']." ".$event['numberPlace'].", ".$event['city']?>
+            </p>
+        </div>
+        <nav id="map" style="position:absolute !important;margin-top: 10px"></nav>
     </div>
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYnppb21lazk3IiwiYSI6ImNqcWNrMTgxNzN3NHg0M2p5Zmdwdmg2c2sifQ.rddDzE5_J3ZCYizZgpuSdA';
     var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding.forwardGeocode({
-        query: '<?= $event['namePlace']?>',
+        query: '<?= $event['namePlace'].', '.$event['city']?>',
         autocomplete: false,
         limit: 1
     })

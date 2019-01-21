@@ -151,11 +151,10 @@ class EventMapper
 
     public function editEvent($eventArray) : void
     {
-
         $sql="UPDATE event SET eventName = :eventName, description = :description, beginDate = :beginDate, endDate = :endDate
               where eventName = :named";
         $stmt = $this->database->connect()->prepare($sql);
-
+        var_dump($eventArray);
         $stmt->bindParam(":eventName",$eventArray['name']);
         $stmt->bindParam(":description",$eventArray['description']);
         $stmt->bindParam(":beginDate",$eventArray['begindate']);

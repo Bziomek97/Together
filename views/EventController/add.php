@@ -10,13 +10,6 @@ include(dirname(__DIR__) . '/sidebar.php');?>
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
 
-<script>
-    var geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken
-    });
-    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-</script>
-
 <script type="text/javascript" src="../../public/js/inputDateCheck.js"></script>
 
 <div id="alertDate"> </div>

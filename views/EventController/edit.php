@@ -7,6 +7,10 @@
 <?php include(dirname(__DIR__) . '/navbar.php');
 include(dirname(__DIR__) . '/sidebar.php');?>
 
+<script type="text/javascript" src="../../public/js/inputDateCheck.js"></script>
+
+<div id="alertDate"> </div>
+
 <form method="POST" action="?page=eventEdit">
     <div class="mt-4" style="margin-left: 100px; margin-right: 100px; background-color: whitesmoke; border-radius: 25px;">
         <div class="container col">
@@ -33,49 +37,23 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                     </div>
-                    <input type="date" name="bdate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['begindate']['date']);?>" required>
-                    <input type="time" name="btime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['begindate']['time']);?>" required>
+                    <input type="date" name="bdate" id="bdate" class="form-control col-sm-2" onblur="checkStartDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['begindate']['date']);?>" required>
+                    <input type="time" name="btime" id="btime" class="form-control col-sm-2" onblur="checkStartDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['begindate']['time']);?>" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                     </div>
-                    <input type="date" name="edate" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['enddate']['date']);?>" required>
-                    <input type="time" name="etime" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['enddate']['time']);?>" required>
+                    <input type="date" name="edate" id="edate" onblur="checkEndDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['enddate']['date']);?>" required>
+                    <input type="time" name="etime" id="etime" onblur="checkEndDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['enddate']['time']);?>" required>
                 </div>
             </div>
         </div>
-        <div class="container col">
-            <label class="mt-4" style="font-size: 18px">Localization</label>
-        </div>
-        <div class="container col ">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Place</span>
-                </div>
-                <input type="text" name="place" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['place']['name']);?>" required>
-            </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Street and Number</span>
-                </div>
-                <input type="text" name="street" class="form-control col" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['place']['street']);?>">
-                <input type="text" name="number" class="form-control col-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['place']['number']);?>">
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">City</span>
-                </div>
-                <input type="text" name="city" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo($event['place']['city']);?>">
-            </div>
-        </div>
-
-        <input type="hidden" name="oldevent" value="<?php echo($event['name']);?>" >
+        <input type="hidden" name="oldevent" value="<?= $event['name'];?>" />
         <div class="container col d-flex ">
-            <button type="submit" class="btn btn-primary mb-3 ml-auto">Add event</button>
+            <button type="submit" class="btn btn-primary mb-3 ml-auto">Edit event</button>
         </div>
     </div>
 </form>

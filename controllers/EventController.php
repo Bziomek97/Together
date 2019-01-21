@@ -67,15 +67,8 @@ class EventController extends AppController
                 'description' => $_POST['description'],
                 'begindate' => $date,
                 'enddate' => $date2,
-                'place' => [
-                    'name' => $_POST['place'],
-                    'street' => $_POST['street'],
-                    'number' => $_POST['number'],
-                    'city' => $_POST['city']
-                ],
                 'oldevent' => $_POST['oldevent']
             ];
-
             $mapper->editEvent($eventArray);
         }
 
@@ -104,12 +97,6 @@ class EventController extends AppController
                     'enddate' => [
                         'date' => $explodeEDate[0],
                         'time' => $explodeEDate[1]
-                    ],
-                    'place' => [
-                        'name' => $event->getPlace(),
-                        'street' => $event->getStreet(),
-                        'number' => $event->getNumber(),
-                        'city' => $event->getCity()
                     ]
                 ];
                 $this->render('edit',['event' => $eventArray]);
