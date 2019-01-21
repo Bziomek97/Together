@@ -4,6 +4,9 @@ require_once "AppController.php";
 
 require_once __DIR__ . '/../model/User/User.php';
 require_once __DIR__ . '/../model/User/UserMapper.php';
+require_once __DIR__ . '/../model/Event/Event.php';
+require_once __DIR__ . '/../model/Event/EventMapper.php';
+
 
 
 class DefaultController extends AppController
@@ -16,9 +19,8 @@ class DefaultController extends AppController
 
     public function index()
     {
-        $text = 'Hello there 👋';
-
-        $this->render('index', ['text' => $text]);
+        $mapper = new EventMapper();
+        $this->render('index', ['event' => $mapper->getAllEvents()]);
     }
 
     public function login()
@@ -56,8 +58,8 @@ class DefaultController extends AppController
     {
         session_unset();
         session_destroy();
-
-        $this->render('index', ['text' => 'You have been successfully logged out!']);
+        $mapper = new EventMapper();
+        $this->render('index', ['event' => $mapper->getAllEvents()]);
     }
 
     public function edit()
@@ -73,7 +75,7 @@ class DefaultController extends AppController
             if($_POST['password']!=NULL) $mapper->setPassword($_POST['password']);
         }
 
-        $this->render('edit', ['text' => 'You have been successfully change information!']);
+        $this->render('edit');
     }
 
     public function register()
@@ -90,5 +92,13 @@ class DefaultController extends AppController
 
         $this->login();
         exit();
+    }
+
+    public function detail()
+    {
+        $mapper = new EventMapper();
+        $name = $_GET['name'];
+        $ok=$mapper->getGETEvent($name);
+        $this->render('detail',['event' => $ok]);
     }
 }

@@ -27,6 +27,10 @@ class Routing
                 'controller' => 'DefaultController',
                 'action' => 'register'
             ],
+            'detail' => [
+                'controller' => 'DefaultController',
+                'action' => 'detail'
+            ],
             'edit' => [
                 'controller' => 'DefaultController',
                 'action' => 'edit'

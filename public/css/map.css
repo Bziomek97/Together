@@ -1,5 +1,7 @@
 #map{
-  height: 100%;
-  width: 100%;
-  position: fixed;
+  min-height: 200px;
+  height: 25%;
+  width: 85%;
+  top:475px;
+  margin-left: 15px;
 }

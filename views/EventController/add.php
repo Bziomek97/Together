@@ -7,6 +7,9 @@
 <?php include(dirname(__DIR__) . '/navbar.php');
 include(dirname(__DIR__) . '/sidebar.php');?>
 
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
 <script type="text/javascript" src="../../public/js/inputDateCheck.js"></script>
 
 <div id="alertDate"> </div>
@@ -37,8 +40,8 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Begin Date</span>
                             </div>
-                            <input type="date" name="bdate" id="bdate" onchange="checkStartDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <input type="time" name="btime" id="btime" onchange="checkStartDate()"  class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="date" name="bdate" id="bdate" onblur="checkStartDate()" class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="time" name="btime" id="btime" onblur="checkStartDate()"  class="form-control col-sm-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="invalid-feedback" id="berror">
                             </div>
                         </div>
@@ -47,8 +50,8 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                             <div class="input-group-prepend ">
                                 <span class="input-group-text" id="inputGroup-sizing-default">End Date</span>
                             </div>
-                                <input type="date" name="edate" class="form-control col-sm-2 " id="edate" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                                <input type="time" name="etime" class="form-control col-sm-2" id="etime" onchange="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input type="date" name="edate" class="form-control col-sm-2 " id="edate" onblur="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input type="time" name="etime" class="form-control col-sm-2" id="etime" onblur="checkEndDate()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>
                     </div>
                 </div>
@@ -62,7 +65,6 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                         </div>
                         <input type="text" name="place" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                     </div>
-
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Street and Number</span>
@@ -80,7 +82,7 @@ include(dirname(__DIR__) . '/sidebar.php');?>
                 </div>
 
                 <div class="container col d-flex ">
-                    <button type="submit" id="acceptButton" disabled="true  " class="btn btn-primary mb-3 ml-auto">Add event</button>
+                    <button type="submit" id="acceptButton" disabled="true" class="btn btn-primary mb-3 ml-auto">Add event</button>
                 </div>
             </div>
     </form>
