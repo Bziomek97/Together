@@ -74,11 +74,11 @@ class UserMapper
         $stmt->execute();
     }
 
-    public function delete(int $id): void
+    public function delete($id): void
     {
         try {
-            $stmt = $this->database->connect()->prepare('DELETE FROM useraccount WHERE id = :id;');
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt = $this->database->connect()->prepare('DELETE FROM useraccount WHERE email = :email;');
+            $stmt->bindParam(':email', $id, PDO::PARAM_INT);
             $stmt->execute();
         }
         catch(PDOException $e) {
@@ -105,6 +105,7 @@ class UserMapper
             $stmt->execute();
         }
         catch(PDOException $e) {
+            $this->database->connect()->rollBack();
             die();
         }
     }

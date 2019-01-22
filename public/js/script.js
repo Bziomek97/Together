@@ -7,6 +7,7 @@ function getUsers() {
     const apiUrl = "http://localhost:8008";
     const $list = $('.users-list');
 
+    console.log($list);
     $.ajax({
         url : apiUrl + '/?page=admin_users',
         dataType : 'json'
@@ -14,8 +15,6 @@ function getUsers() {
         .done((res) => {
 
             $list.empty();
-            //robimy pętlę po zwróconej kolekcji
-            //dołączając do tabeli kolejne wiersze
             res.forEach(el => {
                 $list.append(`<tr class="d-flex">
                     <td scope="col" class="col-3">${el.name}</td>
@@ -23,7 +22,7 @@ function getUsers() {
                     <td scope="col" class="col-4">${el.email}</td>
                     <td scope="col" class="col-1">${el.Role}</td>
                     <td scope="col" class="col-1">
-                    <button type="button" onclick="deleteUser(${el.id})" style="background: none; border: none;">
+                    <button type="button" onclick="deleteUser('${el.email}')" style="background: none; border: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                          width="20" height="20"
                                          viewBox="0 0 224 224"
@@ -35,18 +34,19 @@ function getUsers() {
         });
 }
 
-function deleteUser(id) {
+function deleteUser(email) {
+
     if (!confirm('Are you sure to delete this user?')) {
         return;
     }
 
-    const apiUrl = "http://localhost:8002";
+    const apiUrl = "http://localhost:8008";
 
     $.ajax({
         url : apiUrl + '/?page=admin_delete_user',
         method : "POST",
         data : {
-            id : id
+            id : email
         },
         success: function() {
             alert('Selected user successfully deleted from database!');

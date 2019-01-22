@@ -83,7 +83,7 @@ class EventMapper
     public function getEvents()
     {
         if($_SESSION['role']=='admin'){
-            $sql = "SELECT * FROM event as ev INNER JOIN place ON place.id=ev.idPlace INNER JOIN useraccount ON ev.idUser=useraccount.id";
+            $sql = "SELECT * FROM allevents";
             $stmt = $this->database->connect()->prepare($sql);
         }
         else {
@@ -173,4 +173,11 @@ class EventMapper
         return $result;
     }
 
+    public function deleteEvents($userid)
+    {
+        $sql='DELETE e FROM EVENT e INNER JOIN useraccount on e.idUser = useraccount.id where email = :email';
+        $stmt = $this->database->connect()->prepare($sql);
+        $stmt->bindParam(":email",$userid);
+        $stmt->execute();
+    }
 }

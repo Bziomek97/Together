@@ -37,8 +37,11 @@ class AdminController extends AppController
             return;
         }
 
+        $events = new EventMapper();
+        $events -> deleteEvents($_POST['id']);
+
         $user = new UserMapper();
-        $user->delete((int)$_POST['id']);
+        $user->delete($_POST['id']);
 
         http_response_code(200);
     }

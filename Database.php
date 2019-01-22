@@ -21,7 +21,10 @@ class Database
     public function connect()
     {
         try {
-            return new PDO("mysql:host=$this->servername;dbname=$this->database", $this->username, $this->password);
+            return new PDO("mysql:host=$this->servername;dbname=$this->database", $this->username, $this->password,array(
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES => true
+            ));
         }
         catch(PDOException $e)
         {
